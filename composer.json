@@ -1,0 +1,13 @@
+{
+    "name": "beekalam/jdflib",
+    "description": "Jalali date functions",
+    "type": "library",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Mohammad Reza Mansouri",
+            "email": "beekalam@gmail.com"
+        }
+    ],
+    "require": {}
+}
