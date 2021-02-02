@@ -1,13 +1,42 @@
 {
     "name": "beekalam/jdflib",
-    "description": "Jalali date functions",
+    "description": "Jalali Calendar Utilities",
+    "keywords": [
+        "beekalam",
+        "jdflib"
+    ],
+    "homepage": "https://github.com/beekalam/jdflib",
+    "license": "MIT",
     "type": "library",
-    "license": "GPL-3.0-or-later",
     "authors": [
         {
-            "name": "Mohammad Reza Mansouri",
-            "email": "beekalam@gmail.com"
+            "name": "Mohammadreza Mansouri",
+            "email": "beekalam@gmail.com",
+            "role": "Developer"
         }
     ],
-    "require": {}
+    "require": {
+        "php": "^7.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Beekalam\\Jdflib\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Beekalam\\Jdflib\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    }
 }
