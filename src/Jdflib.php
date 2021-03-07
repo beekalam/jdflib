@@ -788,6 +788,15 @@ class Jdflib
             throw new \InvalidArgumentException('Invalid date');
         }
 
-        return self::jalali_to_gregorian($year, $month, $day, $separator);
+        [$y, $m, $d] = self::jalali_to_gregorian($year, $month, $day, '');
+
+        if ($pad_with_zero && strlen($d) == 1) {
+            $d = "0".$d;
+        }
+        if ($pad_with_zero && strlen($m) == 1) {
+            $m = "0".$m;
+        }
+
+        return "{$y}{$glue}{$m}{$glue}{$d}";
     }
 }
