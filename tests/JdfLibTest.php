@@ -18,4 +18,28 @@ class JdfLibTest extends TestCase
     {
         $this->assertEquals(gregorian_to_jalali(1, 1, 2000), Jdflib::gregorian_to_jalali(1, 1, 2000));
     }
+
+    /** @test */
+    function given_invalid_date_should_throw_exception_when_wrong_year_is_given_converting_with_convert_jalali_to_gregorian()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        Jdflib::convert_jalali_to_gregorian("-1/11/11");
+    }
+
+    /** @test */
+    function given_invalid_date_should_throw_exception_when_wrong_month_is_given_converting_with_convert_jalali_to_gregorian()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        Jdflib::convert_jalali_to_gregorian("1399/811/11");
+    }
+
+    /** @test */
+    function given_invalid_date_should_throw_exception_when_wrong_day_is_given_converting_with_convert_jalali_to_gregorian()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        Jdflib::convert_jalali_to_gregorian("1399/11/99");
+    }
 }

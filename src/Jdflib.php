@@ -780,4 +780,14 @@ class Jdflib
 
         return ($mod === '') ? [$gy, $gm, $gd] : $gy.$mod.$gm.$mod.$gd;
     }
+
+    public static function convert_jalali_to_gregorian($date, $separator = '/', $glue = '/', $pad_with_zero = false)
+    {
+        [$year, $month, $day] = explode($separator, $date);
+        if (! self::jcheckdate($month, $day, $year)) {
+            throw new \InvalidArgumentException('Invalid date');
+        }
+
+        return self::jalali_to_gregorian($year, $month, $day, $separator);
+    }
 }
