@@ -799,4 +799,22 @@ class Jdflib
 
         return "{$y}{$glue}{$m}{$glue}{$d}";
     }
+
+    /**
+     * @param string $date
+     * @param string $separator
+     * @param string $glue
+     * @param false $pad_with_zero
+     */
+    public static function convert_gregorian_to_jalali($date, $separator = '/', $glue = '/', $pad_with_zero = false)
+    {
+        [$year, $month, $day] = explode($separator, $date);
+        if (! checkdate($month, $day, $year)) {
+            throw new \InvalidArgumentException('Invalid date');
+        }
+
+        [$y, $m, $d] = self::gregorian_to_jalali($year, $month, $day, '');
+
+        return "{$y}{$glue}{$m}{$glue}{$d}";
+    }
 }

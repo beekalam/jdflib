@@ -53,4 +53,12 @@ class JdfLibTest extends TestCase
         $expected = "2021/01/01";
         $this->assertEquals($expected, $ret);
     }
+
+    /** @test */
+    function can_convert_gregorian_to_jalali()
+    {
+        $expected = Jdflib::gregorian_to_jalali(2000, 1, 1, '-');
+
+        $this->assertEquals($expected, Jdflib::convert_gregorian_to_jalali("2000/1/1", "/", "-"));
+    }
 }
