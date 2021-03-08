@@ -842,4 +842,19 @@ class Jdflib
         return self::add($date, $interval, $separator,$glue);
     }
 
+    public static function sub($date, $interval, $separator="/",$glue="/")
+    {
+        $gregorian_date = self::convert_jalali_to_gregorian($date, $separator);
+        $date = new \DateTime($gregorian_date);
+        $date->sub($interval);
+        $fmt=sprintf("Y%sm%sd",$glue,$glue,$glue);
+        return self::convert_gregorian_to_jalali($date->format($fmt),$glue,$glue);
+    }
+
+    public static function sub_day($date, $interval,$separator="/", $glue="/")
+    {
+        $interval = new \DateInterval("P".$interval."D");
+        return self::sub($date, $interval, $separator,$glue);
+    }
+
 }

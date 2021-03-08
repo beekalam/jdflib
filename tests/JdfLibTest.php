@@ -67,8 +67,18 @@ class JdfLibTest extends TestCase
     function can_add_days_to_jalali_date()
     {
         $today = Jdflib::gregorian_to_jalali(2000,1,1,'-'); // 1378-10-11
-        $tomorrow = Jdflib::gregorian_to_jalali(2000,1,2,'-'); // 1378-10-11
+        $tomorrow = Jdflib::gregorian_to_jalali(2000,1,2,'-'); // 1378-10-12
 
         $this->assertEquals($tomorrow, Jdflib::add_day($today,1,"-","-"));
     }
+
+    /** @test */
+    function can_subtract_days_to_jalali_date()
+    {
+        $today = Jdflib::gregorian_to_jalali(2000,1,2,'-'); // 1378-10-12
+        $tomorrow = Jdflib::gregorian_to_jalali(2000,1,1,'-'); // 1378-10-11
+
+        $this->assertEquals($tomorrow, Jdflib::sub_day($today,1,"-","-"));
+    }
 }
+
