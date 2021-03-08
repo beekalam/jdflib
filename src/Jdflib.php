@@ -2,6 +2,8 @@
 
 namespace Beekalam\Jdflib;
 
+use DateTime;
+
 class Jdflib
 {
     // Build your next great package.
@@ -781,6 +783,13 @@ class Jdflib
         return ($mod === '') ? [$gy, $gm, $gd] : $gy.$mod.$gm.$mod.$gd;
     }
 
+    /**
+     * @param string $date
+     * @param string $separator
+     * @param string $glue
+     * @param false $pad_with_zero
+     * @return string
+     */
     public static function convert_jalali_to_gregorian($date, $separator = '/', $glue = '/', $pad_with_zero = false)
     {
         [$year, $month, $day] = explode($separator, $date);
@@ -817,4 +826,20 @@ class Jdflib
 
         return "{$y}{$glue}{$m}{$glue}{$d}";
     }
+
+    public static function add($date, $interval, $separator="/",$glue="/")
+    {
+        $gregorian_date = self::convert_jalali_to_gregorian($date, $separator);
+        $date = new \DateTime($gregorian_date);
+        $date->add($interval);
+        $fmt=sprintf("Y%sm%sd",$glue,$glue,$glue);
+        return self::convert_gregorian_to_jalali($date->format($fmt),$glue,$glue);
+    }
+
+    public static function add_day($date, $interval,$separator="/", $glue="/")
+    {
+        $interval = new \DateInterval("P".$interval."D");
+        return self::add($date, $interval, $separator,$glue);
+    }
+
 }

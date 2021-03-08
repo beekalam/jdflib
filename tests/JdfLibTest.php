@@ -3,6 +3,7 @@
 namespace Beekalam\Jdflib\Tests;
 
 use Beekalam\Jdflib\Jdflib;
+use PHPUnit\Framework\Test;
 use PHPUnit\Framework\TestCase;
 
 class JdfLibTest extends TestCase
@@ -60,5 +61,14 @@ class JdfLibTest extends TestCase
         $expected = Jdflib::gregorian_to_jalali(2000, 1, 1, '-');
 
         $this->assertEquals($expected, Jdflib::convert_gregorian_to_jalali("2000/1/1", "/", "-"));
+    }
+
+    /** @test */
+    function can_add_days_to_jalali_date()
+    {
+        $today = Jdflib::gregorian_to_jalali(2000,1,1,'-'); // 1378-10-11
+        $tomorrow = Jdflib::gregorian_to_jalali(2000,1,2,'-'); // 1378-10-11
+
+        $this->assertEquals($tomorrow, Jdflib::add_day($today,1,"-","-"));
     }
 }
